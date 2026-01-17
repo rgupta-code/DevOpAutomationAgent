@@ -91,5 +91,60 @@ namespace DotNetProjectForAntigravity.Tests.Services
             Assert.That(result.Count, Is.EqualTo(1));
             Assert.That(result[0], Is.EqualTo("dbo.sp_GetUser"));
         }
+
+        [Test]
+        public async Task GetStoredProcedureDefinitionAsync_ReturnsDefinition()
+        {
+            var expectedDefinition = "CREATE PROCEDURE dbo.sp_Test AS SELECT 1";
+
+            _mockConnection.SetupDapperAsync(c => c.QueryFirstOrDefaultAsync<string>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
+                           .ReturnsAsync(expectedDefinition);
+
+            var result = await _service.GetStoredProcedureDefinitionAsync("dbo.sp_Test");
+
+            Assert.That(result, Is.EqualTo(expectedDefinition));
+        }
+
+        [Test]
+        public async Task GetTableColumnsAsync_ReturnsColumns()
+        {
+            var expectedColumns = new List<string> { "Id", "Name", "CreatedDate" };
+
+            _mockConnection.SetupDapperAsync(c => c.QueryAsync<string>(It.IsAny<string>(), It.IsAny<object>(), null, null, null))
+                           .ReturnsAsync(expectedColumns);
+
+            var result = await _service.GetTableColumnsAsync("dbo", "Users");
+
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result[0], Is.EqualTo("Id"));
+        }
+
+        [Test]
+        public async Task BenchmarkStoredProcedureAsync_ReturnsResults()
+        {
+            _mockConnection.SetupDapperAsync(c => c.ExecuteAsync(It.IsAny<string>(), It.IsAny<object>(), null, null, CommandType.StoredProcedure))
+                           .ReturnsAsync(1);
+
+            var result = await _service.BenchmarkStoredProcedureAsync("dbo.sp_Test");
+
+            Assert.That(result.OriginalSuccess, Is.True);
+            Assert.That(result.OriginalExecutionTime, Is.GreaterThanOrEqualTo(0));
+            Assert.That(result.OptimizedSuccess, Is.False); // Not provided
+        }
+
+        [Test]
+        public async Task BenchmarkStoredProcedureAsync_WithOptimized_ReturnsBothResults()
+        {
+             _mockConnection.SetupDapperAsync(c => c.ExecuteAsync(It.IsAny<string>(), It.IsAny<object>(), null, null, It.IsAny<CommandType?>()))
+                           .ReturnsAsync(1);
+
+            var result = await _service.BenchmarkStoredProcedureAsync("dbo.sp_Test", "SELECT 1");
+
+            Assert.That(result.OriginalSuccess, Is.True);
+            Assert.That(result.OptimizedSuccess, Is.True);
+            Assert.That(result.OriginalExecutionTime, Is.GreaterThanOrEqualTo(0));
+            Assert.That(result.OptimizedExecutionTime, Is.GreaterThanOrEqualTo(0));
+        }
     }
 }
