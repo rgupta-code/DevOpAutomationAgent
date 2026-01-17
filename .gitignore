@@ -330,3 +330,6 @@ CodeGuardianReport_*.md
 # Agent specific
 .agent/
 .gemini/
+
+# Workspace specific
+DotNetProjectForAntigravity/
