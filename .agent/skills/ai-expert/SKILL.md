@@ -30,7 +30,7 @@ When selecting a model for a specific task in the project (e.g., SQL optimizatio
 
 The agent should proactively research and suggest improvements based on:
 - **New Model Releases**: Tracking updates from Google DeepMind, OpenAI, and Anthropic.
-- **Agentic Frameworks**: Using tools like LangGraph or semantic kernels to improve the Code Guardian's autonomy.
+- **Agentic Frameworks**: Standardizing on **Model Context Protocol (MCP)** for all external tool interactions to ensure low latency and high reliability.
 - **Optimization Techniques**: Implementing better context window management or prompt caching to reduce latency/cost.
 
 ## Usage Instructions
