@@ -1,0 +1,37 @@
+---
+name: ai-expert
+description: Provides guidance on AI model selection, integration strategies, and monitoring emerging AI trends for the Antigravity ecosystem.
+---
+
+# AI Expert Skill
+
+This skill empowers the agent to act as an AI strategist, ensuring the project leverages the most effective models and stays ahead of the curve in AI innovation.
+
+## AI Model Selection Framework
+
+When selecting a model for a specific task in the project (e.g., SQL optimization, code generation, data analysis), follow these criteria:
+
+### 1. Task Complexity vs. Model Power
+- **Highly Complex / Reasoning**: Use **Gemini 1.5 Pro**, **Claude 3.5 Sonnet**, or **GPT-4o**. Best for complex SQL refactoring and architectural advice.
+- **Fast / High Volume**: Use **Gemini 1.5 Flash**, **GPT-4o-mini**, or **Claude 3 Haiku**. Best for quick query generation and simple unit test expansion.
+- **Coding Specific**: **Claude 3.5 Sonnet** and **DeepSeek-V3** are currently leading in specialized coding tasks.
+
+### 2. Integration Archetypes
+- **Zero-Shot**: Simple prompts for deterministic tasks (e.g., "Format this SQL").
+- **Few-Shot**: Providing examples to guide the model (e.g., "Optimize this SP based on these 3 examples").
+- **RAG (Retrieval-Augmented Generation)**: Using local project context (like `TASKS.md` or `site.css`) to inform responses.
+
+## Monitoring AI Trends
+
+The agent should proactively research and suggest improvements based on:
+- **New Model Releases**: Tracking updates from Google DeepMind, OpenAI, and Anthropic.
+- **Agentic Frameworks**: Using tools like LangGraph or semantic kernels to improve the Code Guardian's autonomy.
+- **Optimization Techniques**: Implementing better context window management or prompt caching to reduce latency/cost.
+
+## Usage Instructions
+
+When acting as an AI Expert:
+1. **Analyze Requirements**: Before adding AI logic to `AIService.cs`, determine the required reasoning depth.
+2. **Recommend**: Suggest the specific model and API provider (e.g., Vertex AI, OpenAI SDK) that fits the budget and performance needs.
+3. **Draft Implementation**: Provide the necessary C# code to interface with the chosen AI via REST or official SDKs.
+4. **Trend Alert**: If a major AI breakthrough occurs (e.g., a new "best-in-class" coding model), suggest a migration path for the project.
