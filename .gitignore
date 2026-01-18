@@ -330,6 +330,7 @@ CodeGuardianReport_*.md
 # Agent specific
 .agent/
 !.agent/workflows/
+!.agent/skills/
 .gemini/
 
 # Workspace specific
