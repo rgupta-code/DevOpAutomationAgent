@@ -11,10 +11,15 @@ This skill empowers the agent to act as an AI strategist, ensuring the project l
 
 When selecting a model for a specific task in the project (e.g., SQL optimization, code generation, data analysis), follow these criteria:
 
-### 1. Task Complexity vs. Model Power
-- **Highly Complex / Reasoning**: Use **Gemini 1.5 Pro**, **Claude 3.5 Sonnet**, or **GPT-4o**. Best for complex SQL refactoring and architectural advice.
-- **Fast / High Volume**: Use **Gemini 1.5 Flash**, **GPT-4o-mini**, or **Claude 3 Haiku**. Best for quick query generation and simple unit test expansion.
-- **Coding Specific**: **Claude 3.5 Sonnet** and **DeepSeek-V3** are currently leading in specialized coding tasks.
+### 1. "Free-First" Priority Policy
+- **Primary Directive**: Always prioritize high-quality **Free Tier** or **Open Source** models for project tasks (e.g., Gemini 1.5 Flash via Google AI Studio's free tier, or local models like Llama 3 via Ollama).
+- **Paid Threshold**: Only recommend paid models (or paid tiers) if the task involves ultra-complex reasoning, massive context needs (>1M tokens), or enterprise-grade reliability that exceeds free tier limitations.
+- **Cost Transparency**: When suggesting a model, explicitly state if it is free or has a cost associated.
+
+### 2. Task Complexity vs. Model Power
+- **Highly Complex / Reasoning**: Use **Gemini 1.5 Pro** (Free tier available), **Claude 3.5 Sonnet**, or **GPT-4o**. Best for complex SQL refactoring and architectural advice.
+- **Fast / High Volume**: Use **Gemini 1.5 Flash** (Highly recommended free tier), **GPT-4o-mini**, or **Claude 3 Haiku**. Best for quick query generation and simple unit test expansion.
+- **Coding Specific**: **Claude 3.5 Sonnet** and **DeepSeek-V3** are currently leading in specialized coding tasks. (Check for free API trials or local hosting options).
 
 ### 2. Integration Archetypes
 - **Zero-Shot**: Simple prompts for deterministic tasks (e.g., "Format this SQL").
