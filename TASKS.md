@@ -1,4 +1,5 @@
 # Project Tasks: DevOp Automation Agent
+**Central Tracking**: [GitHub Project #4](https://github.com/users/rgupta-code/projects/4)
 
 ## 🛠️ In Progress
 - [ ] #4: Continuous Quality Improvement
@@ -8,6 +9,8 @@
   - [x] Create Designer Skill
   - [x] Create Manager Skill
   - [x] Create AI Expert Skill
+  - [x] Setup GitHub MCP Server (Guidance provided)
+  - [x] Update Manager Skill for MCP integration
   - [ ] Perform first full "Code Guard Audit" with all skills integrated.
 
 ## 📋 Backlog
