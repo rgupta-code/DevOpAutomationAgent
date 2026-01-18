@@ -7,6 +7,7 @@
   - [x] Create Documentation Skill
   - [x] Create Designer Skill
   - [x] Create Manager Skill
+  - [x] Create AI Expert Skill
   - [ ] Perform first full "Code Guard Audit" with all skills integrated.
 
 ## 📋 Backlog
