@@ -9,13 +9,23 @@ This skill allows the agent to act as a Project Manager, ensuring that every fea
 
 ## Task Tracking Mechanism
 
-Since direct API access to GitHub might be restricted, this skill uses a **Local Task Mirror** (`TASKS.md`) in the workspace root to track the state of the project.
+The primary source of truth for project management is the **GitHub Project (V2)**:
+[Antigravity Project #4](https://github.com/users/rgupta-code/projects/4)
+
+### API Interaction (GraphQL)
+GitHub Project V2 MUST be accessed via the **GitHub GraphQL API**. 
+- **Preferred Tool**: `gh api graphql` (if GitHub CLI is installed).
+- **Fallback**: `curl` or PowerShell `Invoke-RestMethod` with a Personal Access Token (PAT).
 
 ### Workflow
-1. **New Feature Request**: When a new feature is requested, the agent creates a "Task" entry in `TASKS.md` with a unique ID and status `[Backlog]`.
-2. **Start Development**: When work begins, the status is moved to `[In Progress]`.
-3. **Completion**: Once tests pass and code is pushed, the status is moved to `[Done]`.
-4. **Synchronization**: Every time `TASKS.md` is updated, the agent should report the change to the user so they can manually sync with GitHub Issues if desired.
+1. **New Feature Request**: Record the request in the `TASKS.md` backlog.
+2. **Sync to GitHub**: 
+   - Use the GraphQL `createProjectV2Item` mutation to add tasks to Project #4.
+   - Example Query: `mutation { addProjectV2ItemById(input: {projectId: "...", contentId: "..."}) { item { id } } }`
+3. **Internal Updates**: Move status to `[In Progress]` locally in `TASKS.md`.
+4. **Status Sync**: 
+   - Use `updateProjectV2ItemFieldValue` to move cards between columns (Todo -> In Progress -> Done) using the field ID for "Status".
+5. **Report**: Explicitly confirm the API transaction ID or status update to the user.
 
 ## Task Structure in `TASKS.md`
 
